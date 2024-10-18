@@ -9,7 +9,7 @@ cd build_libunwind
 
 FLAGS="-fsanitize=dataflow -fsanitize-blacklist=/dfsan_abilist.txt"
 
-cmake -G "Ninja"\
+cmake \
   -DCMAKE_BUILD_TYPE=MinSizeRel\
   -DCMAKE_INSTALL_PREFIX=/opt/libunwind\
   -DCMAKE_C_COMPILER=clang\
@@ -19,5 +19,5 @@ cmake -G "Ninja"\
   -DCMAKE_CXX_FLAGS="$FLAGS"\
   -DLIBUNWIND_ENABLE_SHARED=NO\
   ../libunwind
-ninja -j${NCPUS} install
+make -j${NCPUS} install
 

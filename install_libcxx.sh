@@ -12,7 +12,7 @@ cd build_libcxxabi
 
 FLAGS="-fsanitize=dataflow -fsanitize-blacklist=/dfsan_abilist.txt"
 
-cmake -G "Ninja"\
+cmake \
   -DCMAKE_BUILD_TYPE=MinSizeRel\
   -DCMAKE_INSTALL_PREFIX=/opt/libcxx\
   -DCMAKE_C_COMPILER=clang\
@@ -24,14 +24,14 @@ cmake -G "Ninja"\
   -DLIBCXXABI_LIBCXX_PATH=../libcxx\
   -DLIBCXXABI_USE_LLVM_UNWINDER=On\
   ../libcxxabi
-ninja -j${NCPUS} install
+make -j${NCPUS} install
 
 cd ..
 
 mkdir build_libcxx
 cd build_libcxx
 
-cmake -G "Ninja"\
+cmake \
   -DCMAKE_BUILD_TYPE=MinSizeRel\
   -DCMAKE_INSTALL_PREFIX=/opt/libcxx\
   -DCMAKE_C_COMPILER=clang\
@@ -44,5 +44,5 @@ cmake -G "Ninja"\
   -DLIBCXX_CXX_ABI_INCLUDE_PATHS=../libcxxabi/include/\
   -DLIBCXX_CXX_ABI_LIBRARY_PATH=../build_libcxxabi/lib/\
   ../libcxx
-ninja -j${NCPUS} install
+make -j${NCPUS} install
 

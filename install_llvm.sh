@@ -12,7 +12,7 @@ mv compiler-rt-${VERSION}.src compiler-rt
 
 mkdir build_llvm
 cd build_llvm
-cmake -G "Ninja"\
+cmake \
   -DCMAKE_BUILD_TYPE=MinSizeRel\
   -DLLVM_TARGETS_TO_BUILD="X86"\
   -DLLVM_ENABLE_PROJECTS="clang;compiler-rt"\
@@ -21,5 +21,5 @@ cmake -G "Ninja"\
   -DCMAKE_INSTALL_PREFIX=/opt/llvm/\
   ../llvm-${VERSION}.src
 
-ninja -j${NCPUS} install
+make -j${NCPUS} install
 
